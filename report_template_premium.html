@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Intelligence Insight Brief</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: {{theme_color}};
+            --text-color: #1e293b;
+            --heading-color: #0f172a;
+            --bg-color: #ffffff;
+            --font-family: {{font_family_stack}};
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .paper {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20mm auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 25mm;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            max-height: 60px;
+            max-width: 200px;
+        }
+
+        .report-info {
+            text-align: right;
+        }
+
+        .report-info .label {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .report-info .title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--heading-color);
+            margin: 0;
+        }
+
+        .report-info .date {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 10px;
+        }
+
+        .content {
+            text-align: {{text_alignment}};
+        }
+
+        .content h1 {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        .content h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--heading-color);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .content h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #334155;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: 900;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .content strong {
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 25mm;
+            left: 25mm;
+            right: 25mm;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media print {
+            body { background: white; }
+            .paper { margin: 0; box-shadow: none; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="paper">
+        <div class="header">
+            <div class="logo-container">
+                {{#if logo_url}}
+                <img src="{{logo_url}}" alt="Logo" class="logo">
+                {{else}}
+                <div style="background: #f1f5f9; width: 120px; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 10px; font-weight: 700;">LOGO</div>
+                {{/if}}
+            </div>
+            <div class="report-info">
+                <div class="label">Media Intelligence Report</div>
+                <h1 class="title">{{report_title}}</h1>
+                <div class="date">{{report_date_range}}</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Executive Insight Brief</h1>
+            {{{final_content_html}}}
+        </div>
+
+        <div class="footer">
+            <span>Generated by Fullintel Intelligence Engine</span>
+            <span>Page 1 of 1</span>
+        </div>
+    </div>
+</body>
+</html>
