@@ -4,7 +4,7 @@ import {
     BarChart2, CheckCircle, AlertCircle, XCircle, RefreshCw, Save,
     Edit2, ArrowLeft, FileText, Eye, Cpu, Shield, Zap, Info,
     ThumbsUp, ThumbsDown, MessageSquare, Calendar, Tag, ExternalLink,
-    ChevronDown, ChevronUp, AlertTriangle,
+    ChevronDown, ChevronUp, AlertTriangle, Layout, Download,
     Sparkles, X, Send, Copy, Clock, Filter, Bot, RotateCcw, PlusCircle,
     History as HistoryIcon
 } from 'lucide-react';
@@ -952,12 +952,32 @@ Under each header write 2-4 sentences or bullet points (using - prefix). Profess
                     <button className="btn btn-secondary btn-sm" disabled={saving} onClick={() => saveReport('reviewing')}>
                         {saving ? <><span className="spinner spinner-sm" /> Saving...</> : <><Save size={14} /> Save Progress</>}
                     </button>
-                    <button className="btn btn-success btn-sm" disabled={saving} onClick={() => saveReport('approved')}>
-                        <CheckCircle size={14} /> Approve Report
+                    
+                    <div style={{ borderLeft: '1px solid var(--color-gray-200)', height: 24, margin: '0 8px' }} />
+                    
+                    <button 
+                        className="btn btn-primary btn-sm" 
+                        onClick={() => navigate(`/reports/${id}/insight-brief`)}
+                    >
+                        <Zap size={14} /> Insight Brief
                     </button>
-                    <button className="btn btn-danger btn-sm" disabled={saving} onClick={() => saveReport('rejected')}>
-                        <XCircle size={14} /> Reject Report
+
+                    <button 
+                        className="btn btn-secondary btn-sm" 
+                        style={{ background: '#f8fafc', borderColor: '#e2e8f0' }}
+                        onClick={() => navigate(`/reports/${id}/builder`)}
+                    >
+                        <Layout size={14} /> Edit Design
                     </button>
+                    
+                    {report.status === 'approved' && (
+                        <button 
+                            className="btn btn-success btn-sm" 
+                            onClick={() => navigate(`/reports/${id}/builder?download=true`)}
+                        >
+                            <Download size={14} /> Download Final Report
+                        </button>
+                    )}
                 </div>
 
                 {saveMsg && (
